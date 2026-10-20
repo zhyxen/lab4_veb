@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Редагування даних спеціаліста в адміністративній панелі студії USVIDOM у Бучі.">
+  <title>Редагування елемента — USVIDOM</title>
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <!-- Шапка сайту (спільна для всіх сторінок) -->
+  <header>
+    <p><strong>USVIDOM</strong></p>
+    <p>Простір психологічної підтримки, тілесних практик та усвідомленого життя</p>
+    
+    <nav aria-label="Основна навігація">
+      <ul>
+        <li><a href="index.html">Каталог</a></li>
+        <li><a href="about.html">Про проєкт</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Хлібні крихти згідно з вимогами -->
+  <nav aria-label="Хлібні крихти">
+    <ol>
+      <li><a href="admin.html">Адміністрування</a></li>
+      <li aria-current="page">Редагування: Олена Коваль</li>
+    </ol>
+  </nav>
+
+  <!-- Головний вміст сторінки редагування -->
+  <main>
+    <h1>Редагування елемента каталогу</h1>
+    <p><em>Зверніть увагу:</em> форма заповнена поточними даними обраного спеціаліста.</p>
+
+    <section>
+      <h2>Форма редагування спеціаліста</h2>
+      <form action="admin.html" method="get" id="edit-form">
+        
+        <!-- Приховане поле з ідентифікатором елемента, що редагується -->
+        <input type="hidden" name="itemId" value="spec-001">
+
+        <!-- Група 1: Основні дані -->
+        <fieldset>
+          <legend>Основні дані спеціаліста</legend>
+          
+          <p>
+            <label for="title">ПІБ / Назва спеціаліста:</label>
+            <input type="text" id="title" name="title" value="Олена Коваль" required minlength="3" maxlength="100" autocomplete="name">
+          </p>
+
+          <p>
+            <label for="category">Категорія напряму:</label>
+            <select id="category" name="category" required>
+              <option value="">-- Оберіть напрям терапії --</option>
+              <option value="cbt" selected>Когнітивно-поведінкова терапія (КПТ)</option>
+              <option value="somatic">Тілесно-орієнтована терапія</option>
+              <option value="art">Арттерапія</option>
+              <option value="child">Дитяча та підліткова психологія</option>
+              <option value="gestalt">Гештальт-підхід</option>
+              <option value="family">Парна та сімейна терапія</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="price">Вартість сесії (грн):</label>
+            <input type="number" id="price" name="price" value="1500" min="800" max="3000" step="100" required aria-describedby="price-hint">
+            <span id="price-hint">Вкажіть суму в межах від 800 до 3000 грн з кроком 100.</span>
+          </p>
+
+          <p>
+            <label for="itemCode">Унікальний код / артикул позиції:</label>
+            <input type="text" id="itemCode" name="itemCode" value="PSY-001" pattern="[A-Z]{3}-\d{3}" required aria-describedby="code-hint">
+            <span id="code-hint">Формат: три великі латинські літери, дефіс і три цифри (наприклад, PSY-101).</span>
+          </p>
+        </fieldset>
+
+        <!-- Група 2: Опис і наявність -->
+        <fieldset>
+          <legend>Додаткові параметри та опис</legend>
+
+          <p>
+            <label for="experience">Практичний досвід (років):</label>
+            <input type="number" id="experience" name="experience" value="6" min="1" max="40" required>
+          </p>
+
+          <p>
+            <label for="availableDate">Найближча вільна дата:</label>
+            <input type="date" id="availableDate" name="availableDate" value="2026-10-02" required>
+          </p>
+
+          <p>
+            <label for="photo">Зображення (URL фото):</label>
+            <input type="url" id="photo" name="photo" value="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600" required>
+          </p>
+
+          <p>
+            <label for="description">Короткий опис або специфіка запитів:</label>
+            <textarea id="description" name="description" rows="4" cols="30" maxlength="500">Олена має вищу психологічну освіту та понад 6 років практичного досвіду у сфері когнітивно-поведінкової терапії (КПТ).</textarea>
+          </p>
+
+          <p>
+            <input type="checkbox" id="inStock" name="inStock" value="yes" checked>
+            <label for="inStock">Доступний офлайн-прийом у студії (Буча)</label>
+          </p>
+        </fieldset>
+
+        <!-- Кнопки керування формою з явними типами -->
+        <p>
+          <button type="submit">Зберегти зміни</button>
+          <button type="reset">Скасувати зміни</button>
+        </p>
+
+      </form>
+    </section>
+
+    <p><a href="admin.html">&larr; Повернутися до панелі адміністрування</a></p>
+  </main>
+
+  <!-- Підвал сайту -->
+  <footer>
+    <h2>Контакти та локація студії USVIDOM</h2>
+    <address>
+      <p><strong>Адреса:</strong> Україна, Київська обл., м. Буча, вул. Володимира Великого, 1Б</p>
+      <p><strong>Телефон:</strong> <a href="tel:+380671234567">+38 (067) 123-45-67</a></p>
+    </address>
+    <p><a href="admin.html">Панель адміністрування</a></p>
+    <p>&copy; <time datetime="2026">2026</time> USVIDOM. Усі права захищено.</p>
+  </footer>
+</body>
+</html>

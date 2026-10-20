@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Адміністративна панель керування каталогом спеціалістів студії USVIDOM у Бучі.">
+  <title>Адміністрування — USVIDOM</title>
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <!-- Шапка сайту (спільна для всіх сторінок) -->
+  <header>
+    <p><strong>USVIDOM</strong></p>
+    <p>Простір психологічної підтримки, тілесних практик та усвідомленого життя</p>
+    
+    <nav aria-label="Основна навігація">
+      <ul>
+        <li><a href="index.html">Каталог</a></li>
+        <li><a href="about.html">Про проєкт</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Хлібні крихти -->
+  <nav aria-label="Хлібні крихти">
+    <ol>
+      <li><a href="index.html">Головна (Каталог)</a></li>
+      <li aria-current="page">Адміністрування</li>
+    </ol>
+  </nav>
+
+  <!-- Головний вміст сторінки адміністрування -->
+  <main>
+    <h1>Панель керування каталогом</h1>
+    <p><em>Зверніть увагу:</em> ця сторінка є навчальною імітацією адміністративного інтерфейсу. У статичному клієнтському додатку вона не має реального захисту на сервері, але демонструє структуру керування вмістом.</p>
+
+    <!-- Таблиця наявних елементів каталогу -->
+    <section>
+      <h2>Поточні елементи каталогу</h2>
+      <table>
+        <caption>Перелік активних спеціалістів та послуг студії USVIDOM</caption>
+        <thead>
+          <tr>
+            <th scope="col">Назва фахівця / послуги</th>
+            <th scope="col">Категорія напряму</th>
+            <th scope="col">Вартість (грн)</th>
+            <th scope="col">Наявність офлайн</th>
+            <th scope="col">Дії</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Олена Коваль</th>
+            <td>Когнітивно-поведінкова терапія (КПТ)</td>
+            <td>1500 грн</td>
+            <td>Так</td>
+            <td><a href="admin-edit.html">Редагувати: Олена Коваль</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Олександр Мельник</th>
+            <td>Тілесно-орієнтована терапія</td>
+            <td>1700 грн</td>
+            <td>Так</td>
+            <td><a href="admin-edit.html">Редагувати: Олександр Мельник</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Форма додавання нового елемента -->
+    <section>
+      <h2>Додати нового спеціаліста до каталогу</h2>
+      <form action="#" method="get" id="item-form">
+        
+        <!-- Група 1: Основні дані -->
+        <fieldset>
+          <legend>Основні дані спеціаліста</legend>
+          
+          <p>
+            <label for="title">ПІБ / Назва спеціаліста:</label>
+            <input type="text" id="title" name="title" required minlength="3" maxlength="100" autocomplete="name" placeholder="Наприклад: Анна Шевченко">
+          </p>
+
+          <p>
+            <label for="category">Категорія напряму:</label>
+            <select id="category" name="category" required>
+              <option value="">-- Оберіть напрям терапії --</option>
+              <option value="cbt">Когнітивно-поведінкова терапія (КПТ)</option>
+              <option value="somatic">Тілесно-орієнтована терапія</option>
+              <option value="art">Арттерапія</option>
+              <option value="child">Дитяча та підліткова психологія</option>
+              <option value="gestalt">Гештальт-підхід</option>
+              <option value="family">Парна та сімейна терапія</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="price">Вартість сесії (грн):</label>
+            <input type="number" id="price" name="price" min="800" max="3000" step="100" required aria-describedby="price-hint">
+            <span id="price-hint">Вкажіть суму в межах від 800 до 3000 грн з кроком 100.</span>
+          </p>
+
+          <p>
+            <label for="itemCode">Унікальний код / артикул позиції:</label>
+            <input type="text" id="itemCode" name="itemCode" pattern="[A-Z]{3}-\d{3}" required placeholder="PSY-001" aria-describedby="code-hint">
+            <span id="code-hint">Формат: три великі латинські літери, дефіс і три цифри (наприклад, PSY-101).</span>
+          </p>
+        </fieldset>
+
+        <!-- Група 2: Опис і наявність -->
+        <fieldset>
+          <legend>Додаткові параметри та опис</legend>
+
+          <p>
+            <label for="experience">Практичний досвід (років):</label>
+            <input type="number" id="experience" name="experience" min="1" max="40" required>
+          </p>
+
+          <p>
+            <label for="availableDate">Найближча вільна дата:</label>
+            <input type="date" id="availableDate" name="availableDate" required>
+          </p>
+
+          <p>
+            <label for="photo">Зображення (URL фото):</label>
+            <input type="url" id="photo" name="photo" placeholder="https://example.com/photo.jpg" required>
+          </p>
+
+          <p>
+            <label for="description">Короткий опис або специфіка запитів:</label>
+            <textarea id="description" name="description" rows="4" cols="30" maxlength="500" placeholder="Опишіть головні напрями роботи..."></textarea>
+          </p>
+
+          <p>
+            <input type="checkbox" id="inStock" name="inStock" value="yes" checked>
+            <label for="inStock">Доступний офлайн-прийом у студії (Буча)</label>
+          </p>
+        </fieldset>
+
+        <!-- Кнопки керування формою з явними типами -->
+        <p>
+          <button type="submit">Додати елемент</button>
+          <button type="reset">Очистити форму</button>
+        </p>
+
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Підвал сайту -->
+  <footer>
+    <h2>Контакти та локація студії USVIDOM</h2>
+    <address>
+      <p><strong>Адреса:</strong> Україна, Київська обл., м. Буча, вул. Володимира Великого, 1Б</p>
+      <p><strong>Телефон:</strong> <a href="tel:+380671234567">+38 (067) 123-45-67</a></p>
+    </address>
+    <p><a href="admin.html">Панель адміністрування</a></p>
+    <p>&copy; <time datetime="2026">2026</time> USVIDOM. Усі права захищено.</p>
+  </footer>
+</body>
+</html>
